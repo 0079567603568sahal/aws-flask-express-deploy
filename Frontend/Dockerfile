@@ -1,6 +1,10 @@
-FROM node:18
+# Frontend/Dockerfile
+FROM node:20-alpine
+
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 COPY . .
-CMD ["node", "index.js"]
+
+EXPOSE 3000
+CMD ["node", "server.js"]
